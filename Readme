@@ -1,6 +1,8 @@
 Readme for CS5700 Project 3
 
 Experiment Methodology:
+
+Experiment 1:
 Question to answer for experiment 1: What are the performance characteristics of Tahoe, Reno, New Reno and Vegas under different load conditions.
 
 Test Bed: NS-2 with a possibly separate random number generator to simulate random flow pattern changes.
@@ -12,7 +14,28 @@ Back off extra flows and monitor recovery of all of the nodes
 Generate at least 3 iterations and compare to see the different results. This should result in 9 different data sets from 3 runs(3 sets per run per node).
 Which stream do we start first, UDP to allow network to stabilize before introducing the TCP surges. Can we introduce the TCP flows first before starting UDP CBR.
 Once the network is stabilized, increase CBR by 1Mbps until the performance begins to deteriorate. This rate increase may need to be more coarse depending on
-performance response during the experiment. It may become necessary to increase by an order of 5 or 10 Mbps. 
+performance response during the experiment. It may become necessary to increase by an order of 5 or 10 Mbps.
+
+Questions to answer: What is the highest average throughput? Which has the lowest average latency? Which has fewest drops?
+Overall best TCP variant? How do we define best TCP variant? Best can defined by each of the questions being asked as well as
+if one variation wins multiple categories then it can be best overall but not necessarily best at everything.
+
+Experiment 2:
+Question to answer for experiment 2: Which variants of TCP are fair vs which variants are greedy when recovering from network surges and failures?
+
+Still using NS-2 with possible external random number generator.
+
+UDP start, turn one connection on first and then other Reno-Reno, New Reno-New Reno. After both are on, ramp up CBR until they beginning to fail and remove tcp
+streams.
+
+Questions to answer: which variants are fair vs which ones are greedy? which variations are more fairness oriented vs which variations are not?
+what about each variant makes it greedy vs fair(Tahoe with slow start vs Reno and New Reno with Fast Recovery).
+
+Generate at least 3 iterations and compare to see the different results. This should result in 9 different data sets from 3 runs(3 sets per run per node).
+Which stream do we start first, UDP to allow network to stabilize before introducing the TCP surges. Can we introduce the TCP flows first before starting UDP CBR.
+Once the network is stabilized, increase CBR by 1Mbps until the performance begins to deteriorate. This rate increase may need to be more coarse depending on
+performance response during the experiment. It may become necessary to increase by an order of 5 or 10 Mbps.
+
 
 
 Each experiment will begin with the flows initiated and allowed to run to establish their base behavior.
