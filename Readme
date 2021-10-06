@@ -39,7 +39,17 @@ streams.
 Questions to answer: which variants are fair vs which ones are greedy? which variations are more fairness oriented vs which variations are not?
 what about each variant makes it greedy vs fair(Tahoe with slow start vs Reno and New Reno with Fast Recovery).
 
-TODO: Methodology
+Methodology: Using the threshold values from experiment 1, we can ramp up the CBR 1 Mbps at a time until the TCP streams are close to failing. From here record a 6-10 second collection and observe the two TCP streams and compare their performance. 
+Recording the throughput, packet loss rate, and latency of each stream as the CBR increases will show which stream is being more greedy with the bandwidth as congestion increases, based on which stream is performing better as the CBR increases.
+This can also be used to compare the separate pairings of streams to see how long it takes these values to change compared to the other pairings.
+
+This will be done for each of the following pairings:
+
+    Reno/Reno
+    NewReno/Reno
+    Vegas/Vegas
+    NewReno/Vegas
+
 
 
 #################################################################################################################################################################################################
