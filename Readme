@@ -8,15 +8,20 @@ Question to answer for experiment 1: What are the performance characteristics of
 Test Bed: NS-2 with a possibly separate random number generator to simulate random flow pattern changes.
 
 Create virtual network with NS2 with 4 nodes(each one running a different tcp variety: Tahoe, Reno, New Reno, Vegas) and 2 central CBR nodes.
-start CBR and nodes and allow to stabilize, then start external flows based on random number generated and track when different tcp variations begin to fail.
-Back off extra flows and monitor recovery of all of the nodes
+start CBR and nodes and allow to stabilize, then start external flows based on random number generated and track when different tcp variations begin to fail and recover.
 
-Generate at least 3 iterations and compare to see the different results. This should result in 9 different data sets from 3 runs(3 sets per run per node).
-Which stream do we start first, UDP to allow network to stabilize before introducing the TCP surges. Can we introduce the TCP flows first before starting UDP CBR.
-Once the network is stabilized, increase CBR by 1Mbps until the performance begins to deteriorate. This rate increase may need to be more coarse depending on
-performance response during the experiment. It may become necessary to increase by an order of 5 or 10 Mbps.
+Hypothesis:
 
-Questions to answer: What is the highest average throughput? Which has the lowest average latency? Which has fewest drops?
+Generate at least 4(one of each TCP flavor) iterations at a 6-10 second interval of each protocol and compare to see the different results of the streams at different loads. Start by running all 4 at 1 Mbps for the CBR to help the protocols stabilize with the bandwidth of 10Mbps.
+With the CBR as our starting constant, we begin the randomized TCP streams and if necessary elevate the CBR until congestion becomes a problem and they fail. Once we have found the rate at which each stream fails, record a 6-10 sec collection and observe the
+behaviour as the protocol fails and then recovers. This rate increase may need to be more coarse depending on performance response during the experiment. It may become necessary to increase by an order of 5 or 10 Mbps. From there we will write analytical scripts to
+calculate throughput, latency, dropped packets over time, and consecutive dropped packets. From this we will confirm or deny our hypothesis.
+
+Methodology: In order to better assess what settings, flow rates, and TCP flow randomization will be most effective, we will first need to tune the experiment such that we test each TCP variant by running a constant bit rate and introduce randomized tcp flows.
+From there we will increase the CBR until the variant is close to failing but doesn't. This will give us a threshold value for each variant to begin with. Therefore we wont have hunt for the right settings to achieve failure and observe the variants' recovery
+processes.
+
+Questions to answer: What is the highest average throughput(how many packets are processed in the 6-10 second iterations)? Which has the lowest average latency(measure of packet sent to ack received)? Which has fewest drops?
 Overall best TCP variant? How do we define best TCP variant? Best can defined by each of the questions being asked as well as
 if one variation wins multiple categories then it can be best overall but not necessarily best at everything.
 
@@ -25,11 +30,19 @@ Question to answer for experiment 2: Which variants of TCP are fair vs which var
 
 Still using NS-2 with possible external random number generator.
 
+Hypothesis: TCP Reno and New Reno will be the most greedy as they attempt fast recovery, Tahoe will be slightly less greedy as it will focus on a slow start and trying to reach stabilization. TCP Vegas will be the least greedy as it will recognize the congestion
+in the network before failing and will reduce its window size in anticipation. This should allow Reno and New Reno to attempt to expand their window size.
+
 UDP start, turn one connection on first and then other Reno-Reno, New Reno-New Reno. After both are on, ramp up CBR until they beginning to fail and remove tcp
 streams.
 
 Questions to answer: which variants are fair vs which ones are greedy? which variations are more fairness oriented vs which variations are not?
 what about each variant makes it greedy vs fair(Tahoe with slow start vs Reno and New Reno with Fast Recovery).
+
+TODO: Methodology
+
+
+#################################################################################################################################################################################################
 
 Generate at least 3 iterations and compare to see the different results. This should result in 9 different data sets from 3 runs(3 sets per run per node).
 Which stream do we start first, UDP to allow network to stabilize before introducing the TCP surges. Can we introduce the TCP flows first before starting UDP CBR.
