@@ -76,7 +76,8 @@ This will be done for each of the following pairings:
 
 For pairings 2 and 4, the test will be run twice, with the TCP streams starting in opposite order.
 The timing of the start of each stream will be acheived in the same manner as experiment 1, using 
-randomized delays between each stream initialization.
+randomized delays between each stream initialization. In addition to this, separate runs will vary
+by modifying the start times of the streams, the delay between nodes, and the length of the flows.
 
 ###################################################################################################
 
