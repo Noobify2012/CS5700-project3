@@ -14,7 +14,10 @@ New Reno, Vegas) and 2 central CBR nodes. start CBR and nodes and allow to stabi
 external flows based on random number generated and track when different tcp variations begin to 
 fail and recover.
 
-Hypothesis:
+Hypothesis: TCP Vegas will have the best performance due to its ability to detect congestion and
+begin to regulate its window size in order to prevent failure. TCP New Reno will perform second best
+due to its ability to conduct fast restart but not have the completely closed window size that Reno
+gets when packets begin to be dropped. Finally, the last two will be Tahoe and Reno.
 
 Generate at least 4(one of each TCP flavor) iterations at a 6-10 second interval of each protocol 
 and compare to see the different results of the streams at different loads. Start by running all 4 
@@ -75,32 +78,7 @@ This will be done for each of the following pairings:
    4 NewReno/Vegas
 
 For pairings 2 and 4, the test will be run twice, with the TCP streams starting in opposite order.
-The timing of the start of each stream will be acheived in the same manner as experiment 1, using 
+The timing of the start of each stream will be achieved in the same manner as experiment 1, using
 randomized delays between each stream initialization. In addition to this, separate runs will vary
 by modifying the start times of the streams, the delay between nodes, and the length of the flows.
 
-###################################################################################################
-
-Generate at least 3 iterations and compare to see the different results. This should result in 9 
-different data sets from 3 runs(3 sets per run per node). Which stream do we start first, UDP to 
-allow network to stabilize before introducing the TCP surges. Can we introduce the TCP flows first 
-before starting UDP CBR. Once the network is stabilized, increase CBR by 1Mbps until the 
-performance begins to deteriorate. This rate increase may need to be more coarse depending on
-performance response during the experiment. It may become necessary to increase by an order of 5 or
-10 Mbps.
-
-
-
-Each experiment will begin with the flows initiated and allowed to run to establish their base 
-behavior.
-
-What resources are needed to run this experiment?
-- need NS 2 with TCL scripts to simulate the networks in question
-- random number generator to simulate traffic flows
--
-• How many resources (i.e., nodes, bandwidth, software,
-etc.) are needed for this experiment?
-• What parameters should be varied? What metrics
-should be measured?
-• How large should the experiment be? How many more
-resources are needed to scale the experiment?
