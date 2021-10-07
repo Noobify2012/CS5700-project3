@@ -84,4 +84,7 @@ For pairings 2 and 4, the test will be run twice, with the TCP streams starting 
 The timing of the start of each stream will be achieved in the same manner as experiment 1, using
 randomized delays between each stream initialization. In addition to this, separate runs will vary
 by modifying the start times of the streams, the delay between nodes, and the length of the flows.
+There will be 100 runs per test varying these values, and python scripting will be used to 
+average the measurements of every run together to develop a fair measurement of the data. This will
+give 400 total runs each at 6-10 seconds.
 
