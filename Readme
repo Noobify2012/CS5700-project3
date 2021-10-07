@@ -9,10 +9,13 @@ Reno and Vegas under different load conditions.
 Test Bed: NS-2 with a possibly separate random number generator to simulate random flow pattern 
 changes.
 
-Create virtual network with NS2 with 4 nodes(each one running a different tcp variety: Tahoe, Reno,
-New Reno, Vegas) and 2 central CBR nodes. start CBR and nodes and allow to stabilize, then start 
+Set up: Create virtual network with NS2 with 4 nodes(each one running a different tcp variety: Tahoe, Reno,
+New Reno, Vegas) and 2 central CBR nodes. Start CBR and nodes and allow to stabilize, then start
 external flows based on random number generated and track when different tcp variations begin to 
-fail and recover.
+fail and recover. Conduct the experiment 100 times per TCP variant, analyse each run by calculating
+the questions to be asked for each run, average the measurements over all of the runs of
+that variant, and compare them across the other variants. In total, we should have approximately 400
+6-10 second runs.
 
 Hypothesis: TCP Vegas will have the best performance due to its ability to detect congestion and
 begin to regulate its window size in order to prevent failure. TCP New Reno will perform second best
